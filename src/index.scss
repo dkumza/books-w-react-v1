@@ -5,11 +5,15 @@
 .app {
    @apply container
    min-h-screen
+   flex justify-center
+   items-center
    p-12
+   mx-auto
     border
-    mx-auto;
+    relative;
 
    .bin {
-      @apply border;
+      @apply absolute
+      top-1/2 bottom-1/2;
    }
 }
