@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.app {
+   @apply container
+   min-h-screen
+   p-12
+    border
+    mx-auto;
+
+   .bin {
+      @apply border;
+   }
+}
