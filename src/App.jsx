@@ -1,6 +1,6 @@
 import "./App.scss";
-import { BooksProvider } from "./components/BooksContext";
-import { Layout } from "./components/Layout";
+import { BooksProvider } from "./Components/BooksContext";
+import { Layout } from "./Components/Layout";
 
 function App() {
    return (
