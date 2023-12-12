@@ -3,14 +3,16 @@ import { BooksContext } from "./BooksContext";
 
 /* eslint-disable react/prop-types */
 export const Book = ({ book }) => {
-   console.log(book);
    const { types } = useContext(BooksContext);
    return (
       <div className="book">
          <div className="w-full flex relative">
-            <div className="book-id bg-sky-400 text-sm text-white shadow py-1 px-2 rounded absolute  -top-5 -left-6">
-               {!types ? "" : types.find((t) => t.id === book.type)?.title}
-            </div>
+            {types && (
+               <div className="book-id bg-sky-400 text-sm text-white shadow py-1 px-2 rounded absolute  -top-5 -left-6">
+                  {types.find((t) => t.id === book.type)?.title}
+               </div>
+            )}
+
             <div className="price w-full text-right font-medium text-gray-700 text-xl">
                {book.price} EUR
             </div>

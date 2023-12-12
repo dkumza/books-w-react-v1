@@ -11,14 +11,15 @@
 }
 .app {
    @apply container
+   flex flex-col
    min-h-screen
-   flex justify-center
+   justify-start
    items-center
    p-12
    mx-auto;
 
    .bin {
-      @apply top-1/2 bottom-1/2;
+      @apply top-1/2 bottom-1/2 flex justify-center min-w-full min-h-full;
    }
 
    .book {
@@ -33,5 +34,8 @@
       hover:cursor-pointer;
       height: 400px;
       width: 300px;
+   }
+   select {
+      @apply outline-sky-400 bg-white
    }
 }

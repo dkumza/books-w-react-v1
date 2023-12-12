@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-import { createContext, useEffect, useReducer, useState } from "react";
+import { createContext, useEffect, useReducer, useState, useRef } from "react";
 import booksReducer from "../Reducers/booksReducer";
 import axios from "axios";
-import { loadFromServer } from "../Actions/booksAction";
+import { filterBooks, loadFromServer } from "../Actions/booksAction";
 
 export const BooksContext = createContext();
 
@@ -12,6 +12,9 @@ const BOOKS_TYPES_URL = "https://in3.dev/knygos/types/";
 export const BooksProvider = ({ children }) => {
    const [books, dispatchBooks] = useReducer(booksReducer, null);
    const [types, setTypes] = useState(null);
+   const [filter, setFilter] = useState(0);
+
+   const filterLoaded = useRef(false);
 
    // fetch data from URL
    useEffect(() => {
@@ -25,11 +28,18 @@ export const BooksProvider = ({ children }) => {
       axios
          .get(BOOKS_TYPES_URL)
          .then((res) => {
-            console.log(res.data);
             setTypes(res.data);
          })
          .catch((err) => console.log(err));
    }, []);
+
+   useEffect(() => {
+      if (!filterLoaded.current) {
+         filterLoaded.current = true;
+         return;
+      }
+      dispatchBooks(filterBooks(filter));
+   }, [filter]);
 
    return (
       <BooksContext.Provider
@@ -38,6 +48,8 @@ export const BooksProvider = ({ children }) => {
             dispatchBooks,
             types,
             setTypes,
+            filter,
+            setFilter,
          }}
       >
          {children}

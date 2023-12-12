@@ -8,7 +8,7 @@ export const Layout = () => {
    const { books } = useContext(BooksContext);
 
    return (
-      <div className="flex justify-center">
+      <div className="flex justify-center min-h-full h-96 min-w-full">
          {books ? <Books /> : <Loading />}
       </div>
    );

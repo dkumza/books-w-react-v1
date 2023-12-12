@@ -7,9 +7,9 @@ export const Books = () => {
 
    return (
       <div className="flex flex-wrap gap-4 justify-center items-center">
-         {books.map((book) => (
-            <Book key={book.id} book={book} />
-         ))}
+         {books.map((book) =>
+            book.show ? <Book key={book.id} book={book} /> : null
+         )}
       </div>
    );
 };
