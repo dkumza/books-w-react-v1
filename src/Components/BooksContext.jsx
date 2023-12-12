@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 import booksReducer from "../Reducers/booksReducer";
 import axios from "axios";
 import { loadFromServer } from "../Actions/booksAction";
@@ -11,6 +11,7 @@ const BOOKS_TYPES_URL = "https://in3.dev/knygos/types/";
 
 export const BooksProvider = ({ children }) => {
    const [books, dispatchBooks] = useReducer(booksReducer, null);
+   const [types, setTypes] = useState(null);
 
    // fetch data from URL
    useEffect(() => {
@@ -20,11 +21,23 @@ export const BooksProvider = ({ children }) => {
          .catch((err) => console.log(err));
    }, []);
 
+   useEffect(() => {
+      axios
+         .get(BOOKS_TYPES_URL)
+         .then((res) => {
+            console.log(res.data);
+            setTypes(res.data);
+         })
+         .catch((err) => console.log(err));
+   }, []);
+
    return (
       <BooksContext.Provider
          value={{
             books,
             dispatchBooks,
+            types,
+            setTypes,
          }}
       >
          {children}
