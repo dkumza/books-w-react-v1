@@ -5,6 +5,8 @@ This is a simple React application to fetch data from server and map to DOM. Pre
 ## Description
 
 App takes dummy data from school server about few Books. Then by Book type, fetches Books categories. Which are later filtered.
+<br>
+<br> Similar to ["Vinted" app](https://github.com/dkumza/VINTED-but-not))
 
 ## Features
 
